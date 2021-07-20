@@ -14,7 +14,6 @@ element_length =  __import__('9-element_length').element_length
 i_understand_annotations = __import__('4-define_variables').i_understand_annotations
 
 
-
 print('======= # Test task 0 ==========')
 print(add(1.11, 2.22) == 1.11 + 2.22)
 print(add.__annotations__)
