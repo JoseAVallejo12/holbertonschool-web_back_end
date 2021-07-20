@@ -9,6 +9,8 @@ pi = __import__('4-define_variables').pi
 i_understand_annotations = __import__('4-define_variables').i_understand_annotations
 school = __import__('4-define_variables').school
 sum_list = __import__('5-sum_list').sum_list
+sum_mixed_list = __import__('6-sum_mixed_list').sum_mixed_list
+
 
 print('======= # Test task 0 ==========')
 print(add(1.11, 2.22) == 1.11 + 2.22)
@@ -52,3 +54,11 @@ floats_sum = sum_list(floats)
 print(floats_sum == sum(floats))
 print(sum_list.__annotations__)
 print("sum_list(floats) returns {} which is a {}".format(floats_sum, type(floats_sum)))
+
+
+print('======= # Test task 6 ==========')
+print(sum_mixed_list.__annotations__)
+mixed = [5, 4, 3.14, 666, 0.99]
+ans = sum_mixed_list(mixed)
+print(ans == sum(mixed))
+print("sum_mixed_list(mixed) returns {} which is a {}".format(ans, type(ans)))
