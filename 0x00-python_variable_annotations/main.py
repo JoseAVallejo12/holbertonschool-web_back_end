@@ -4,7 +4,10 @@ concat = __import__('1-concat').concat
 add = __import__('0-add').add
 floor = __import__('2-floor').floor
 to_str = __import__('3-to_str').to_str
-
+a = __import__('4-define_variables').a
+pi = __import__('4-define_variables').pi
+i_understand_annotations = __import__('4-define_variables').i_understand_annotations
+school = __import__('4-define_variables').school
 
 print('======= # Test task 0 ==========')
 print(add(1.11, 2.22) == 1.11 + 2.22)
@@ -33,3 +36,10 @@ pi_str = to_str(3.14)
 print(pi_str == str(3.14))
 print(to_str.__annotations__)
 print("to_str(3.14) returns {} which is a {}".format(pi_str, type(pi_str)))
+
+
+print('======= # Test task 4 ==========')
+print("a is a {} with a value of {}".format(type(a), a))
+print("pi is a {} with a value of {}".format(type(pi), pi))
+print("i_understand_annotations is a {} with a value of {}".format(type(i_understand_annotations), i_understand_annotations))
+print("school is a {} with a value of {}".format(type(school), school))
