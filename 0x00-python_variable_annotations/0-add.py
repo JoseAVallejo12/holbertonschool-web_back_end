@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""Write a type-annotated function"""
+
 
 def add(numberOne: float, number_two: float) -> float:
     """Return a plus b
