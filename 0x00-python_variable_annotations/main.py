@@ -3,6 +3,7 @@ import math
 concat = __import__('1-concat').concat
 add = __import__('0-add').add
 floor = __import__('2-floor').floor
+to_str = __import__('3-to_str').to_str
 
 
 print('======= # Test task 0 ==========')
@@ -26,3 +27,9 @@ print(ans2 == math.floor(666.666))
 
 print(floor.__annotations__)
 print("floor(3.14) returns {}, which is a {}".format(ans, type(ans)))
+
+print('======= # Test task 3 ==========')
+pi_str = to_str(3.14)
+print(pi_str == str(3.14))
+print(to_str.__annotations__)
+print("to_str(3.14) returns {} which is a {}".format(pi_str, type(pi_str)))
