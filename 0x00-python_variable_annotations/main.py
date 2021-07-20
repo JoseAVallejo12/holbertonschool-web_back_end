@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 import math
-concat = __import__('1-concat').concat
 add = __import__('0-add').add
 floor = __import__('2-floor').floor
+to_kv = __import__('7-to_kv').to_kv
 to_str = __import__('3-to_str').to_str
 a = __import__('4-define_variables').a
+concat = __import__('1-concat').concat
 pi = __import__('4-define_variables').pi
-i_understand_annotations = __import__('4-define_variables').i_understand_annotations
-school = __import__('4-define_variables').school
 sum_list = __import__('5-sum_list').sum_list
+school = __import__('4-define_variables').school
 sum_mixed_list = __import__('6-sum_mixed_list').sum_mixed_list
-to_kv = __import__('7-to_kv').to_kv
+element_length =  __import__('9-element_length').element_length
+i_understand_annotations = __import__('4-define_variables').i_understand_annotations
+
 
 
 print('======= # Test task 0 ==========')
@@ -65,13 +67,16 @@ print(ans == sum(mixed))
 print("sum_mixed_list(mixed) returns {} which is a {}".format(ans, type(ans)))
 
 
-print('======= # Test task 6 ==========')
+print('======= # Test task 7 ==========')
 print(to_kv.__annotations__)
 print(to_kv("eggs", 3))
 print(to_kv("school", 0.02))
 
-print('======= # Test task 7 ==========')
+print('======= # Test task 8 ==========')
 make_multiplier = __import__('8-make_multiplier').make_multiplier
 print(make_multiplier.__annotations__)
 fun = make_multiplier(2.22)
 print("{}".format(fun(2.22)))
+
+print('======= # Test task 9 ==========')
+print(element_length.__annotations__)
