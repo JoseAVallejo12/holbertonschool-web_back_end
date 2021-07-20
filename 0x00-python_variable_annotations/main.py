@@ -69,3 +69,9 @@ print('======= # Test task 6 ==========')
 print(to_kv.__annotations__)
 print(to_kv("eggs", 3))
 print(to_kv("school", 0.02))
+
+print('======= # Test task 7 ==========')
+make_multiplier = __import__('8-make_multiplier').make_multiplier
+print(make_multiplier.__annotations__)
+fun = make_multiplier(2.22)
+print("{}".format(fun(2.22)))
