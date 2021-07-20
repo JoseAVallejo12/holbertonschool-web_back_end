@@ -10,6 +10,7 @@ i_understand_annotations = __import__('4-define_variables').i_understand_annotat
 school = __import__('4-define_variables').school
 sum_list = __import__('5-sum_list').sum_list
 sum_mixed_list = __import__('6-sum_mixed_list').sum_mixed_list
+to_kv = __import__('7-to_kv').to_kv
 
 
 print('======= # Test task 0 ==========')
@@ -62,3 +63,9 @@ mixed = [5, 4, 3.14, 666, 0.99]
 ans = sum_mixed_list(mixed)
 print(ans == sum(mixed))
 print("sum_mixed_list(mixed) returns {} which is a {}".format(ans, type(ans)))
+
+
+print('======= # Test task 6 ==========')
+print(to_kv.__annotations__)
+print(to_kv("eggs", 3))
+print(to_kv("school", 0.02))
