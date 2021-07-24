@@ -1,23 +1,21 @@
 #!/usr/bin/env python3
-"""Write an asynchronous function."""
-
+""" Takes 2 int args, waits for random delay """
 
 import asyncio
-from typing import Iterable
+from typing import List
 wait_random = __import__('0-basic_async_syntax').wait_random
 
 
-async def wait_n(n: int, max_delay: int) -> Iterable[float]:
-    """wait and return list of time
+async def wait_n(n: int, max_delay: int = 10) -> List[float]:
+    """ Waits for ran delay until max_delay, returns list of actual delays """
+    spawn_list = []
+    delay_list = []
+    for i in range(n):
+        delayed_task = asyncio.create_task(wait_random(max_delay))
+        delayed_task.add_done_callback(lambda x: delay_list.append(x.result()))
+        spawn_list.append(delayed_task)
 
-    Args:
-        n (int): number of interations
-        max_delay (int): time to sleep
+    for spawn in spawn_list:
+        await spawn
 
-    Returns:
-        Iterable[float]: list of time using
-    """
-    time_result = []
-    for number in range(n):
-        time_result.append(await wait_random(max_delay))
-    return sorted(time_result)
+    return delay_list
