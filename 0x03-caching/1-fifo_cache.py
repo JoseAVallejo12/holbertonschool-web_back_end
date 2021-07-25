@@ -28,7 +28,7 @@ class FIFOCache(BaseCaching):
 
     def isCacheUpgradeable(self, key: str) -> bool:
         """check if cache not is fill"""
-        if len(self.cache_data.keys()) > self.MAX_ITEMS:
-            print(f'DISCARD: ${key}')
+        if len(self.cache_data.keys()) >= self.MAX_ITEMS:
+            print(f'DISCARD: {key}')
             return False
         return True
