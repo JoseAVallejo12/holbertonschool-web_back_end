@@ -3,7 +3,6 @@
 BasicCache = __import__('0-basic_cache').BasicCache
 
 my_cache = BasicCache()
-print(my_cache.get.__annotations__)
 my_cache.print_cache()
 my_cache.put("A", "Hello")
 my_cache.put("B", "World")

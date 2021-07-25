@@ -18,7 +18,6 @@ class BasicCache(BaseCaching):
         """Add value en cache."""
         if key and item:
             self.cache_data[key] = item
-        print(self.cache_data)
 
     def get(self, key: str) -> Union[None, object]:
         """Get value of cache"""
