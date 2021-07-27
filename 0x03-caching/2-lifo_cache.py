@@ -20,7 +20,6 @@ class LIFOCache(BaseCaching):
         if key and item:
             new_dict = {key: item}
             self.isFillCache()
-            new_dict.update(self.cache_data)
             self.cache_data = new_dict
 
     def get(self, key: str) -> Union[None, object]:
