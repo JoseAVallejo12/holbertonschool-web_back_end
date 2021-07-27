@@ -19,8 +19,11 @@ class LIFOCache(BaseCaching):
         """Add value en cache."""
         if key and item:
             new_dict = {key: item}
-            self.isFillCache()
-            self.cache_data = new_dict
+            if self.isFillCache():
+                self.cache_data.update(new_dict)
+            else:
+                new_dict.update(self.cache_data)
+                self.cache_data = new_dict
 
     def get(self, key: str) -> Union[None, object]:
         """Get value of cache"""
