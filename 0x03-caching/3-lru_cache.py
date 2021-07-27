@@ -27,6 +27,9 @@ class LRUCache(BaseCaching):
         """Get value of cache"""
         if key not in self.cache_data.keys():
             return None
+        if self.cache_data.get(key):
+            self.queue.remove(key)
+            self.queue.append(key)
         return self.cache_data[key]
 
     def isFillCache(self, key) -> None:
@@ -34,5 +37,7 @@ class LRUCache(BaseCaching):
         if self.cache_data.get(key):
             self.queue.remove(key)
         self.queue.append(key)
-        if len(self.cache_data.keys()) >= self.MAX_ITEMS:
-            print(f'DISCARD: {self.queue.pop(0)}')
+        if len(self.queue) > self.MAX_ITEMS:
+            item_deleted = self.queue.pop(0)
+            self.cache_data.pop(item_deleted)
+            print(f'DISCARD: {item_deleted}')
