@@ -19,7 +19,6 @@ class LRUCache(BaseCaching):
     def put(self, key: str, item: str) -> None:
         """Add value en cache."""
         if key and item:
-            new_dict = {key: item}
             self.isFillCache(key)
             self.cache_data[key] = item
 

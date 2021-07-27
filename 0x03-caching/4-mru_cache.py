@@ -1,43 +1,32 @@
+
 #!/usr/bin/python3
-"""class MRUCache that inherits from BaseCaching."""
-
-
-from typing import Union
-from base_caching import BaseCaching
+"""Create MRUCache class that inherits from BaseCaching"""
+BaseCaching = __import__('base_caching').BaseCaching
 
 
 class MRUCache(BaseCaching):
-    """Fifo class
+    """ Define MRUCache """
 
-    Args:
-        BaseCaching (class): base cache class
-    """
     def __init__(self):
+        """ Initialize MRUCache """
+        self.stack = []
         super().__init__()
-        self.queue = []
 
-    def put(self, key: str, item: str) -> None:
-        """Add value en cache."""
+    def put(self, key, item):
+        """ Assign the item to the dictionary """
         if key and item:
-            new_dict = {key: item}
-            self.isFillCache(key)
+            if self.cache_data.get(key):
+                self.stack.remove(key)
+            while len(self.stack) >= self.MAX_ITEMS:
+                delete = self.stack.pop()
+                self.cache_data.pop(delete)
+                print('DISCARD: {}'.format(delete))
+            self.stack.append(key)
             self.cache_data[key] = item
 
-    def get(self, key: str) -> Union[None, object]:
-        """Get value of cache"""
-        if key not in self.cache_data.keys():
-            return None
+    def get(self, key):
+        """ Return the value associated with the given key """
         if self.cache_data.get(key):
-            self.queue.remove(key)
-            self.queue.append(key)
-        return self.cache_data[key]
-
-    def isFillCache(self, key) -> None:
-        """check if cache not is fill"""
-        if self.cache_data.get(key):
-            self.queue.remove(key)
-        self.queue.append(key)
-        if len(self.queue) > self.MAX_ITEMS:
-            item_deleted = self.queue.pop()
-            self.cache_data.pop(item_deleted)
-            print(f'DISCARD: {item_deleted}')
+            self.stack.remove(key)
+            self.stack.append(key)
+        return self.cache_data.get(key)
