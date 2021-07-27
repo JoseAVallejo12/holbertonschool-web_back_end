@@ -17,8 +17,14 @@ class FIFOCache(BaseCaching):
 
     def put(self, key: str, item: str) -> None:
         """Add value en cache."""
-        if key and item and self.isCacheUpgradeable(key):
-            self.cache_data[key] = item
+        if key and item:
+            new_dict = {key: item}
+            if self.isFillCache():
+                self.cache_data.update(new_dict)
+
+            else:
+                new_dict.update(self.cache_data)
+                self.cache_data = new_dict
 
     def get(self, key: str) -> Union[None, object]:
         """Get value of cache"""
@@ -26,9 +32,11 @@ class FIFOCache(BaseCaching):
             return None
         return self.cache_data[key]
 
-    def isCacheUpgradeable(self, key: str) -> bool:
+    def isFillCache(self) -> None:
         """check if cache not is fill"""
         if len(self.cache_data.keys()) >= self.MAX_ITEMS:
-            print(f'DISCARD: {key}')
-            return False
-        return True
+            first_element = list(self.cache_data.keys())[0]
+            self.cache_data.pop(first_element)
+            print(f'DISCARD: {first_element}')
+            return True
+        return False
