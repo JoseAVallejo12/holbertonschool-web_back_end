@@ -1,41 +1,28 @@
 #!/usr/bin/python3
-"""class LIFOCache that inherits from BaseCaching."""
-
-
-from typing import Union
-from base_caching import BaseCaching
+"""Create LIFOCache class that inherits from BaseCaching"""
+BaseCaching = __import__('base_caching').BaseCaching
 
 
 class LIFOCache(BaseCaching):
-    """Fifo class
+    """ Define LIFOCache """
 
-    Args:
-        BaseCaching (class): base cache class
-    """
     def __init__(self):
+        """ Initialize LIFOCache """
+        self.stack = []
         super().__init__()
 
-    def put(self, key: str, item: str) -> None:
-        """Add value en cache."""
+    def put(self, key, item):
+        """ Assign the item to the dictionary """
         if key and item:
-            new_dict = {key: item}
-            if self.isFillCache():
-                self.cache_data.update(new_dict)
-            else:
-                new_dict.update(self.cache_data)
-                self.cache_data = new_dict
+            if self.cache_data.get(key):
+                self.stack.remove(key)
+            while len(self.stack) >= self.MAX_ITEMS:
+                delete = self.stack.pop()
+                self.cache_data.pop(delete)
+                print('DISCARD: {}'.format(delete))
+            self.stack.append(key)
+            self.cache_data[key] = item
 
-    def get(self, key: str) -> Union[None, object]:
-        """Get value of cache"""
-        if key not in self.cache_data.keys():
-            return None
-        return self.cache_data[key]
-
-    def isFillCache(self) -> None:
-        """check if cache not is fill"""
-        if len(self.cache_data.keys()) >= self.MAX_ITEMS:
-            first_element = list(self.cache_data.keys())[0]
-            self.cache_data.pop(first_element)
-            print(f'DISCARD: {first_element}')
-            return True
-        return False
+    def get(self, key):
+        """ Return the value associated with the given key """
+        return self.cache_data.get(key)
