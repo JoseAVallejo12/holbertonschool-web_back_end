@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+"""Simple pagination"""
+
+
 import csv
 import math
 from typing import List
@@ -31,10 +35,10 @@ class Server:
             page_size (int, optional): [description]. Defaults to 10.
 
         Returns:
-            List[List]: list of values request
+            List[List]: list of values
         """
-        assert(type(page_size) == int and type(page) == int)
-        assert(page > 0 and page_size > 0)
-        beginning, end = index_range(page, page_size)
-        return self.dataset()[beginning:end]
-
+        assert(type(page) == int == type(page_size))
+        assert(page > 0 < page_size)
+        cvs_list = self.dataset()
+        start_index, end_index = index_range(page, page_size)
+        return self.dataset[start_index:end_index]
