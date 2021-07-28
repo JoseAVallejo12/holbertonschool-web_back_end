@@ -33,9 +33,8 @@ class Server:
         Returns:
             List[List]: list of values request
         """
-        assert(type(page) == int == type(page_size))
-        assert(page > 0 < page_size)
-        cvs_list = self.dataset()
-        index = index_range(page, page_size)
-        return [ cvs_list[item] for item in range(index[0], index[1]) if item < len(cvs_list)]
+        assert(type(page_size) == int and type(page) == int)
+        assert(page > 0 and page_size > 0)
+        beginning, end = index_range(page, page_size)
+        return self.dataset()[beginning:end]
 
