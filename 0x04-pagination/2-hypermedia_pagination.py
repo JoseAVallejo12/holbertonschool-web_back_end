@@ -54,11 +54,15 @@ class Server:
             object: [description]
         """
         data_list = self.get_page(page, page_size)
+        if len(data_list) == 0:
+            next_index = 0
+        else:
+            next_index = page + 1
         return {
-            'page_size': page_size,
+            'page_size': len(data_list),
             'page': page,
             'data': data_list,
-            'next_page': page + 1,
+            'next_page': next_index,
             'prev_page': page - 1,
             'total_pages':  int(round(len(self.__dataset) / page_size))
         }
