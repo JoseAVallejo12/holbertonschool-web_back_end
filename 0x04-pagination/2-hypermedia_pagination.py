@@ -55,7 +55,7 @@ class Server:
         """
         data_list = self.get_page(page, page_size)
         if len(data_list) == 0:
-            next_index = 0
+            next_index = None
         else:
             next_index = page + 1
         return {
