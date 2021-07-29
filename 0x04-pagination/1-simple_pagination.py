@@ -39,6 +39,6 @@ class Server:
         """
         assert(type(page) == int == type(page_size))
         assert(page > 0 < page_size)
-        cvs_list = self.dataset()
+        self.dataset()
         start_index, end_index = index_range(page, page_size)
-        return self.dataset[start_index:end_index]
+        return self.__dataset[start_index:end_index]
