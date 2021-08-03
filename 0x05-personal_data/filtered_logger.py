@@ -27,11 +27,10 @@ class RedactingFormatter(logging.Formatter):
 
     def __init__(self, fields: List[str]):
         super(RedactingFormatter, self).__init__(self.FORMAT)
-        self.filter_fields = fields
-        print(fields)
+        self.fields = fields
 
     def format(self, record: logging.LogRecord) -> str:
         """REdacting formatter class."""
-        return filter_datum(self.filter_fields,
+        return filter_datum(self.fields,
                             self.REDACTION,
                             super().format(record), self.SEPARATOR)
