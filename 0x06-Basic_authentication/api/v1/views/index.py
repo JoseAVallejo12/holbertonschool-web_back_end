@@ -2,6 +2,7 @@
 """ Module of Index views
 """
 from flask import jsonify, abort
+from werkzeug.sansio.response import Response
 from api.v1.views import app_views
 
 
@@ -24,3 +25,12 @@ def stats() -> str:
     stats = {}
     stats['users'] = User.count()
     return jsonify(stats)
+
+@app_views.route('/unauthorized/', methods=['GET'], strict_slashes=False)
+def unauthorized() -> str:
+    """ GET /api/v1/unauthorized
+    Return:
+      - the number of each objects
+    """
+    abort(401,  description="Unauthorized")
+
