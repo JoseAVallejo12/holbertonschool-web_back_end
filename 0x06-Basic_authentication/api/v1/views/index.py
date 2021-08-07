@@ -2,7 +2,6 @@
 """ Module of Index views
 """
 from flask import jsonify, abort
-from werkzeug.sansio.response import Response
 from api.v1.views import app_views
 
 
@@ -33,4 +32,4 @@ def unauthorized() -> str:
      Returns:
         str: abort 401 status
     """
-    return abort(401)
+    abort(401,  description="Unauthorized")
