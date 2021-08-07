@@ -33,4 +33,3 @@ def unauthorized() -> str:
       - the number of each objects
     """
     abort(401,  description="Unauthorized")
-
