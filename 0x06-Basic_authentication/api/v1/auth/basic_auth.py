@@ -40,7 +40,6 @@ class BasicAuth(Auth):
                 or decoded_base64_authorization_header.count(':') == 0):
             return (None, None)
         headers = decoded_base64_authorization_header.split(':', 1)
-        print(headers)
         return (headers[0].lstrip(), headers[1].lstrip())
 
     def user_object_from_credentials(self, user_email: str,
@@ -51,11 +50,12 @@ class BasicAuth(Auth):
 
         user = User()
         user.load_from_file()
-        users = user.search({'email': user_email})
-        if (len(users) == 0) or not users[0].is_valid_password(user_pwd):
-            return None
-
-        return users[0]
+        users = []
+        for item in user.search({'email': user_email}):
+            if item.is_valid_password(user_pwd):
+                users.append(item)
+        print(users)
+        return users if len(users) > 0 else None
 
     def __isInValid(self, parametter: str) -> bool:
         """Validate arg commin to function"""
