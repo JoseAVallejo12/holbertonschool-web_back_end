@@ -54,7 +54,6 @@ class BasicAuth(Auth):
         for item in user.search({'email': user_email}):
             if item.is_valid_password(user_pwd):
                 users.append(item)
-        print(users)
         return users[0] if len(users) > 0 else None
 
     def __isInValid(self, parametter: str) -> bool:
