@@ -36,19 +36,18 @@ def forbidden(error) -> str:
 
 
 @app.before_request
-def before_request_func():
+def before_request():
     exclude_paths = ['/api/v1/status/',
                      '/api/v1/unauthorized/', '/api/v1/forbidden/']
-    if not isinstance(auth, Auth):
-        return
-    if not auth.require_auth(request.path, exclude_paths):
-        return
+    if isinstance(auth, Auth):
+        if not auth.require_auth(request.path, exclude_paths):
+            return
 
-    if (auth.authorization_header(request) is None):
-        abort(401,  description="Unauthorized")
+        if (auth.authorization_header(request) is None):
+            abort(401,  description="Unauthorized")
 
-    if (auth.current_user(request) is None):
-        abort(403,  description="Forbidden")
+        if (auth.current_user(request) is None):
+            abort(403,  description="Forbidden")
 
 
 if __name__ == "__main__":
