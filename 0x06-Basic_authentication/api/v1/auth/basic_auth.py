@@ -55,7 +55,7 @@ class BasicAuth(Auth):
             if item.is_valid_password(user_pwd):
                 users.append(item)
         print(users)
-        return users if len(users) > 0 else None
+        return users[0] if len(users) > 0 else None
 
     def __isInValid(self, parametter: str) -> bool:
         """Validate arg commin to function"""
