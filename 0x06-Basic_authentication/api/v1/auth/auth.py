@@ -12,6 +12,9 @@ class Auth:
         """Protect path."""
         if excluded_paths is None:
             return True
+        for element in excluded_paths:
+            if "*" in element:
+                return not(path.startswith(element.replace("*", "")))
         return not(path in excluded_paths or f'{path}/' in excluded_paths)
 
     def authorization_header(self, request=None) -> str:
