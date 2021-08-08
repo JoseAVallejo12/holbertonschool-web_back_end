@@ -39,7 +39,8 @@ class BasicAuth(Auth):
         if (self.__isInValid(decoded_base64_authorization_header)
                 or decoded_base64_authorization_header.count(':') == 0):
             return (None, None)
-        headers = decoded_base64_authorization_header.rsplit(':', 1)
+        headers = decoded_base64_authorization_header.split(':', 1)
+        print(headers)
         return (headers[0].lstrip(), headers[1].lstrip())
 
     def user_object_from_credentials(self, user_email: str,
