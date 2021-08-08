@@ -13,4 +13,4 @@ class BasicAuth(Auth):
         if authorization_header is None or not isinstance(authorization_header, str) or not authorization_header.startswith('Basic '):
             return None
 
-        return authorization_header.removeprefix("Basic ")
+        return authorization_header.removeprefix("Basic").lstrip()
