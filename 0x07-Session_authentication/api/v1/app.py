@@ -3,14 +3,13 @@
 Route module for the API
 """
 from os import getenv
-
 from flask.globals import g
 from api.v1.auth.auth import Auth
-from api.v1.auth.basic_auth import BasicAuth
-
 from api.v1.views import app_views
-from flask import Flask, jsonify, abort, request
 from flask_cors import (CORS, cross_origin)
+from api.v1.auth.basic_auth import BasicAuth
+from flask import Flask, jsonify, abort, request
+from api.v1.auth.session_auth import SessionAuth
 
 
 app = Flask(__name__)
@@ -22,7 +21,7 @@ if getenv('AUTH_TYPE') == 'auth':
 elif getenv('AUTH_TYPE') == 'basic_auth':
     auth = BasicAuth()
 elif getenv('AUTH_TYPE') == 'session_auth':
-    auth = BasicAuth
+    auth = SessionAuth()
 
 
 @app.errorhandler(404)
@@ -34,7 +33,7 @@ def not_found(error) -> str:
 
 @app.errorhandler(401)
 def unauthorized(error) -> str:
-    """ Not found authorized
+    """ Not found authorizedX
     """
     return jsonify({"error": error.description}), 401
 
