@@ -22,7 +22,7 @@ if getenv('AUTH_TYPE') == 'auth':
 elif getenv('AUTH_TYPE') == 'basic_auth':
     auth = BasicAuth()
 elif getenv('AUTH_TYPE') == 'session_auth':
-    auth = BasicAuth
+    auth = BasicAuth()
 
 
 @app.errorhandler(404)
@@ -34,7 +34,7 @@ def not_found(error) -> str:
 
 @app.errorhandler(401)
 def unauthorized(error) -> str:
-    """ Not found authorized
+    """ Not found authorizedX
     """
     return jsonify({"error": error.description}), 401
 
