@@ -3,6 +3,7 @@
 
 import uuid
 from typing import TypeVar
+from models.user import User
 from api.v1.auth.auth import Auth
 
 
@@ -34,4 +35,8 @@ class SessionAuth(Auth):
 
     def current_user(self, request=None) -> TypeVar('User'):
         """Current user function.(overload)"""
-        return self.user_id_for_session_id(self.session_cookie(request))
+        session_id = self.session_cookie(request)
+        if session_id is None:
+            return None
+        print(self.user_id_for_session_id(session_id))
+        return User.get(self.user_id_for_session_id(session_id))
