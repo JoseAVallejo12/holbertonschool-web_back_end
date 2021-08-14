@@ -26,6 +26,7 @@ class SessionAuth(Auth):
         return session_id
 
     def user_id_for_session_id(self, session_id: str = None) -> str:
+        """User id for session id."""
         if self.__isInValid(session_id):
             return None
         return self.user_id_by_session_id.get(session_id)
