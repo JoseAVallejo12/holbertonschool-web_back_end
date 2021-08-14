@@ -2,6 +2,7 @@
 """SessionAuth class for the app."""
 
 import uuid
+from typing import TypeVar
 from api.v1.auth.auth import Auth
 
 
@@ -30,3 +31,7 @@ class SessionAuth(Auth):
         if self.__isInValid(session_id):
             return None
         return self.user_id_by_session_id.get(session_id)
+
+    def current_user(self, request=None) -> TypeVar('User'):
+        """Current user function.(overload)"""
+        return self.user_id_for_session_id(self.session_cookie(request))

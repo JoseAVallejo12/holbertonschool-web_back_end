@@ -61,7 +61,6 @@ def before_request() -> str:
     if (auth.current_user(request) is None):
         abort(403,  description="Forbidden")
     request.current_user = auth.current_user(request)
-    print('este es el user', request.current_user.email)
 
 
 if __name__ == "__main__":
