@@ -54,7 +54,8 @@ def before_request() -> str:
     if not auth or not auth.require_auth(request.path, exclude_paths):
         return None
 
-    if (auth.authorization_header(request) is None and auth.session_cookie(request) is None):
+    if (auth.authorization_header(request) is None
+            and auth.session_cookie(request) is None):
         abort(401,  description="Unauthorized")
 
     if (auth.current_user(request) is None):
