@@ -8,6 +8,7 @@ from flask import Flask, jsonify, abort, request
 
 app = Flask(__name__)
 
+
 @app.route("/", methods=['GET'], strict_slashes=False)
 def view_all_users() -> str:
     return jsonify({"message": "Bienvenue"})
