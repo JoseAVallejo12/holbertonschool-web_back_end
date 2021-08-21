@@ -19,13 +19,15 @@ def view_all_users() -> str:
 
 @app.route("/users", methods=['POST'], strict_slashes=False)
 def register_user():
-    user_data = request.get_json()
+    # user_data = request.get_json()
+    email = request.form['email']
+    password = request.form['password']
     try:
-        user = AUTH.register_user(user_data['email'], user_data['password'])
+        user = AUTH.register_user(email, password)
         return jsonify({"email": user.email, "message": "user created"}), 400
     except ValueError:
         return jsonify({"message": "email already registered"})
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port="5000")
+    app.run(host="0.0.0.0", port="5000", debug=True)
