@@ -1,0 +1,9 @@
+{
+  "movements": "14001//10101",
+  "detail": "[{'variable':'Contrato: ','value':'411'},{'variable':'Número del cupón:','value':'123456789'},{'variable':'Valor del abono: ','value':'$8.500'},{'variable':'Saldo pendiente: ','value':'$55.000 '}]"
+}
+
+{
+  "movements": "14001//10101",
+  "detail": "[{"variable":"Contrato: ","value":"411"},{"variable":"Número del cupón: ","value":"123456789"},{"variable":"Valor del abono: ","value":"$8.500"},{"variable":"Saldo pendiente: ","value":"$55.000 "}]"
+}

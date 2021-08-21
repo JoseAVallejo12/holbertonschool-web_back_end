@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" Create user, Find user, Update user """
+"""CRUD Class"""
 from sqlalchemy import create_engine
 from sqlalchemy.exc import InvalidRequestError
 from sqlalchemy.orm import sessionmaker
