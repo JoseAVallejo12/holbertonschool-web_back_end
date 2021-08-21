@@ -19,7 +19,7 @@ def view_all_users() -> str:
 
 @app.route("/users", methods=['POST'], strict_slashes=False)
 def register_user():
-    # user_data = request.get_json()
+    """Register an new user"""
     email = request.form['email']
     password = request.form['password']
     try:
