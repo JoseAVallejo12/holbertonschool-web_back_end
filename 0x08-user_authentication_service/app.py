@@ -20,11 +20,11 @@ def view_all_users() -> str:
 @app.route("/users", methods=['POST'], strict_slashes=False)
 def register_user():
     """Register an new user"""
-    email = request.form['email']
-    password = request.form['password']
+    email = request.form.get('email')
+    password = request.form.get('password')
     try:
         user = AUTH.register_user(email, password)
-        return jsonify({"email": user.email, "message": "user created"}), 201
+        return jsonify({"email": user.email, "message": "user created"}), 200
     except Exception:
         return jsonify({"message": "email already registered"}), 400
 
