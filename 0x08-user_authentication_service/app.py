@@ -3,6 +3,7 @@
 Route module for the API
 """
 from flask import Flask, jsonify, request, abort, make_response, redirect
+from flask.wrappers import Response
 from auth import Auth
 
 AUTH = Auth()
@@ -29,7 +30,8 @@ def register_user():
 
 
 @app.route("/sessions", methods=['POST'], strict_slashes=False)
-def login():
+def login() -> Response:
+    """Login method."""
     email = request.form.get('email')
     password = request.form.get('password')
     if not(email) or not(password):
@@ -42,15 +44,15 @@ def login():
 
 
 @app.route("/sessions", methods=['DELETE'], strict_slashes=False)
-def logout():
+def logout() -> Response:
+    """Method loggin exit."""
     session_id = request.cookies.get('session_id')
-    if session_id:
-        try:
-            user = AUTH.get_user_from_session_id(session_id)
-            AUTH.destroy_session(user_id=user.id)
-            redirect("/")
-        except Exception:
-            abort(403)
+    user = AUTH.get_user_from_session_id(session_id)
+
+    if session_id is None or user is None:
+        abort(403)
+    AUTH.destroy_session(user_id=user.id)
+    return redirect("/")
 
 
 if __name__ == "__main__":
