@@ -2,6 +2,7 @@
 """
 Main file
 """
+from user import User
 from auth import Auth
 
 EMAIL = "guillaume@holberton.io"
@@ -11,11 +12,22 @@ AUTH = Auth()
 
 
 def register_user(email: str, password: str) -> None:
-    assert(True)
+    try:
+        user = AUTH.register_user(email, password)
+        assert(isinstance(user, User))
+    except Exception:
+        assert(False)
+    try:
+        AUTH.register_user(email, password)
+    except Exception as err:
+        assert(isinstance(err, ValueError))
 
 
 def log_in_wrong_password(email: str, password: str) -> None:
-    assert(True)
+    try:
+        assert(AUTH.valid_login(email=email, password=password))
+    except Exception:
+        assert(True)
 
 
 def log_in(email: str, password: str) -> str:
