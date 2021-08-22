@@ -28,8 +28,8 @@ def register_user():
         return jsonify({"message": "email already registered"}), 400
 
 
-@app.route("/login", methods=['POST'], strict_slashes=False)
-def login_session():
+@app.route("/sessions", methods=['POST'], strict_slashes=False)
+def login():
     email = request.form.get('email')
     password = request.form.get('password')
     if not(email) or not(password):
