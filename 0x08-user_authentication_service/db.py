@@ -42,9 +42,9 @@ class DB:
 
     def update_user(self, user_id: int, **kwargs) -> None:
         """Locate the user to update, then will update the user’s."""
-        _id = self.find_user_by(id=user_id)
+        _user = self.find_user_by(id=user_id)
         for key, value in kwargs.items():
-            if not hasattr(_id, key):
+            if not hasattr(_user, key):
                 raise ValueError
-            setattr(_id, key, value)
+            setattr(_user, key, value)
         self._session.commit()
