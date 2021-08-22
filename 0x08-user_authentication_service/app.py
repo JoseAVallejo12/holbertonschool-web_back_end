@@ -18,7 +18,7 @@ def view_all_users() -> str:
 
 
 @app.route("/users", methods=['POST'], strict_slashes=False)
-def register_user():
+def register_user() -> Response:
     """Register an new user"""
     email = request.form.get('email')
     password = request.form.get('password')
@@ -53,6 +53,16 @@ def logout() -> Response:
         abort(403)
     AUTH.destroy_session(user_id=user.id)
     return redirect("/")
+
+
+@app.route("/profile", methods=['GET'], strict_slashes=False)
+def profile() -> Response:
+    """Method loggin exit."""
+    session_id = request.cookies.get('session_id')
+    user = AUTH.get_user_from_session_id(session_id)
+
+    if user:
+        return jsonify({'email': user.email})
 
 
 if __name__ == "__main__":
