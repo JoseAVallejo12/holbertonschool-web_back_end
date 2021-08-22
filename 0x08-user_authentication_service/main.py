@@ -9,23 +9,30 @@ PASSWD = "b4l0u"
 NEW_PASSWD = "t4rt1fl3tt3"
 AUTH = Auth()
 
+
 def register_user(email: str, password: str) -> None:
     assert(True)
+
 
 def log_in_wrong_password(email: str, password: str) -> None:
     assert(True)
 
+
 def log_in(email: str, password: str) -> str:
     assert(True)
+
 
 def profile_unlogged() -> None:
     assert(True)
 
+
 def profile_logged(session_id: str) -> None:
     assert(True)
 
+
 def log_out(session_id: str) -> None:
     assert(True)
+
 
 def reset_password_token(email: str) -> str:
     assert(True)
@@ -36,7 +43,6 @@ def update_password(email: str, reset_token: str, new_password: str) -> None:
 
 
 if __name__ == "__main__":
-
     register_user(EMAIL, PASSWD)
     log_in_wrong_password(EMAIL, NEW_PASSWD)
     profile_unlogged()
