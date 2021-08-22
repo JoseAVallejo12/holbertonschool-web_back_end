@@ -3,7 +3,6 @@
 Route module for the API
 """
 from flask import Flask, jsonify, request, abort, make_response, redirect
-from flask.wrappers import Response
 from auth import Auth
 
 AUTH = Auth()
@@ -18,7 +17,7 @@ def view_all_users() -> str:
 
 
 @app.route("/users", methods=['POST'], strict_slashes=False)
-def register_user() -> Response:
+def register_user():
     """Register an new user"""
     email = request.form.get('email')
     password = request.form.get('password')
@@ -30,7 +29,7 @@ def register_user() -> Response:
 
 
 @app.route("/sessions", methods=['POST'], strict_slashes=False)
-def login() -> Response:
+def login():
     """Login method."""
     email = request.form.get('email')
     password = request.form.get('password')
@@ -44,7 +43,7 @@ def login() -> Response:
 
 
 @app.route("/sessions", methods=['DELETE'], strict_slashes=False)
-def logout() -> Response:
+def logout():
     """Method loggin exit."""
     session_id = request.cookies.get('session_id')
     user = AUTH.get_user_from_session_id(session_id)
@@ -56,7 +55,7 @@ def logout() -> Response:
 
 
 @app.route("/profile", methods=['GET'], strict_slashes=False)
-def profile() -> Response:
+def profile():
     """Profile session id user."""
     session_id = request.cookies.get('session_id')
     user = AUTH.get_user_from_session_id(session_id)
@@ -67,7 +66,7 @@ def profile() -> Response:
 
 
 @app.route("/reset_password", methods=['POST'], strict_slashes=False)
-def get_reset_password_token() -> Response:
+def get_reset_password_token():
     """Return token for Reset password."""
     email = request.form.get('email')
     if email is None:
@@ -81,7 +80,7 @@ def get_reset_password_token() -> Response:
 
 
 @app.route("/reset_password", methods=['PUT'])
-def update_password() -> Response:
+def update_password():
     """Reset password token."""
     email = request.form.get('email')
     reset_token = request.form.get('reset_token')
