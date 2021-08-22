@@ -2,8 +2,7 @@
 """
 Route module for the API
 """
-from os import getenv
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, abort, make_response
 from auth import Auth
 
 AUTH = Auth()
@@ -27,6 +26,19 @@ def register_user():
         return jsonify({"email": user.email, "message": "user created"}), 200
     except Exception:
         return jsonify({"message": "email already registered"}), 400
+
+
+@app.route("/login", methods=['POST'], strict_slashes=False)
+def login_session():
+    email = request.form.get('email')
+    password = request.form.get('password')
+    if not(email) or not(password):
+        abort(401)
+    if not(AUTH.valid_login(email=email, password=password)):
+        abort(401)
+    res = make_response({"email": email, "message": "logged in"})
+    res.set_cookie('session_id', AUTH.create_session(email))
+    return res
 
 
 if __name__ == "__main__":
