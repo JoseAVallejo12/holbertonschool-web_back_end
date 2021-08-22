@@ -39,7 +39,7 @@ class Auth:
             pass
         return False
 
-    def _generate_uuid(self) -> str:
+    def __generate_uuid(self) -> str:
         """Generate UUID code."""
         return str(uuid.uuid4())
 
@@ -47,7 +47,7 @@ class Auth:
         """Create session ID if user exist in DB."""
         try:
             user = self._db.find_user_by(email=email)
-            session_id = self._generate_uuid()
+            session_id = self.__generate_uuid()
             self._db.update_user(user.id, session_id=session_id)
             return session_id
         except Exception:
