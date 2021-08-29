@@ -1,42 +1,42 @@
 #!/usr/bin/env python3
 """
-App module
+Flask app
 """
-from flask import Flask, request, render_template
+from flask import Flask, render_template, request
 from flask_babel import Babel
-from typing import Union
+
+
+class Config:
+    """
+    Config class
+    """
+    LANGUAGES = ['en', 'fr']
 
 
 app = Flask(__name__)
-babel = Babel(app)
-
-
-class Config(object):
-    """ Class config app
-    """
-    LANGUAGES = ['en', 'fr']
-    BABEL_DEFAULT_LOCALE = 'en'
-    BABEL_DEFAULT_TIMEZONE = 'UTC'
-
-
+app.url_map.strict_slashes = False
 app.config.from_object(Config)
+
+babel = Babel(app)
+Babel.default_locale = 'en'
+Babel.default_timezone = 'UTC'
+
+
+@app.route('/', methods=['GET'])
+def hello():
+    """ return index """
+    return render_template('4-index.html')
 
 
 @babel.localeselector
-def get_locale() -> Union[str, None]:
-    """ get locale
+def get_locale():
+    """
+    Get locale from request
     """
     locale = request.args.get('locale')
-    if locale and locale in app.config['LANGUAGES']:
+    if locale in Config.LANGUAGES:
         return locale
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
-
-
-@app.route('/')
-def index() -> str:
-    """ index
-    """
-    return render_template('4-index.html')
+    return request.accept_languages.best_match(Config.LANGUAGES)
 
 
 if __name__ == "__main__":
