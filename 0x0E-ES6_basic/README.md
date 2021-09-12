@@ -71,31 +71,36 @@ in your project directory:
 ## Configuration files
 
 `package.json`
+<details>
+  <summary>Click for expand...</summary>
 
-```json
-{
-  "scripts": {
-    "lint": "./node_modules/.bin/eslint",
-    "check-lint": "lint [0-9]*.js",
-    "dev": "npx babel-node",
-    "test": "jest",
-    "full-test": "./node_modules/.bin/eslint [0-9]*.js && jest"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.6.0",
-    "@babel/node": "^7.8.0",
-    "@babel/preset-env": "^7.6.0",
-    "eslint": "^6.4.0",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jest": "^22.17.0",
-    "jest": "^24.9.0"
+  ```json
+  {
+    "scripts": {
+      "lint": "./node_modules/.bin/eslint",
+      "check-lint": "lint [0-9]*.js",
+      "dev": "npx babel-node",
+      "test": "jest",
+      "full-test": "./node_modules/.bin/eslint [0-9]*.js && jest"
+    },
+    "devDependencies": {
+      "@babel/core": "^7.6.0",
+      "@babel/node": "^7.8.0",
+      "@babel/preset-env": "^7.6.0",
+      "eslint": "^6.4.0",
+      "eslint-config-airbnb-base": "^14.0.0",
+      "eslint-plugin-import": "^2.18.2",
+      "eslint-plugin-jest": "^22.17.0",
+      "jest": "^24.9.0"
+    }
   }
-}
+  ```
 
-```
+</details>
 
 `babel.config.js`
+<details>
+  <summary>Click for expand...</summary>
 
 ```js
 module.exports = {
@@ -112,7 +117,11 @@ module.exports = {
 };
 ```
 
+</details>
+
 `.eslintrc.js`
+<details>
+  <summary>Click for expand...</summary>
 
 ```js
 module.exports = {
@@ -152,5 +161,6 @@ module.exports = {
 };
 ```
 
+</details>
 Finally…
 Don’t forget to run npm install from the terminal of your project folder to install all necessary project dependencies.
