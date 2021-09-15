@@ -6,16 +6,16 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
     signUpUser(firstName, lastName),
     uploadPhoto(fileName),
   ])
-    .then((values) => values.map((data) => {
-      if (data.reason) {
+    .then((values) => values.map((value) => {
+      if (value.reason) {
         return {
-          status: data.status,
-          value: data.reason.message,
+          status: value.status,
+          value: `Error: ${value.reason.message}`,
         };
       }
       return {
-        status: data.status,
-        value: data.value,
+        status: value.status,
+        value: value.value,
       };
     }));
 }
