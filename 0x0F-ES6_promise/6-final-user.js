@@ -15,7 +15,7 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
       }
       return {
         status: data.status,
-        value: `${data.value.firstName} ${data.value.lastName}`,
+        value: data.value,
       };
     }));
 }
