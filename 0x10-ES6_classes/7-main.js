@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import Airport from './7-airport';
 
 const airportSF = new Airport('San Francisco Airport', 'SFO');
