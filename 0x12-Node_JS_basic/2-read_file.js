@@ -14,8 +14,8 @@ function countStudents(pathFile) {
       if (data.includes('SWE')) result.SWE.push(data[0]);
     }
     console.log(`Number of students: ${result.CS.length + result.SWE.length}`);
-    console.log(`Number of students in CS: ${result.CS.length}. List: ${result.CS}`);
-    console.log(`Number of students in SWE: ${result.SWE.length}. List: ${result.SWE}`);
+    console.log(`Number of students in CS: ${result.CS.length}. List: ${result.CS.join(', ')}`);
+    console.log(`Number of students in SWE: ${result.SWE.length}. List: ${result.SWE.join(', ')}`);
   } catch (error) {
     throw new Error('Cannot load the database');
   }
