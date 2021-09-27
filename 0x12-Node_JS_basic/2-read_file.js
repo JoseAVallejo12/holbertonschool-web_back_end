@@ -17,7 +17,7 @@ function countStudents(pathFile) {
     console.log(`Number of students in CS: ${result.CS.length}. List: ${result.CS}`);
     console.log(`Number of students in SWE: ${result.SWE.length}. List: ${result.SWE}`);
   } catch (error) {
-    console.log('Cannot load the database');
+    throw new Error('Cannot load the database');
   }
 }
 module.exports = countStudents;
