@@ -2,12 +2,12 @@ function calculateNumber(type, a, b) {
   const aRound = Math.round(a);
   const bRound = Math.round(b);
 
-  const obj = {
+  const operaciones = {
     SUM: () => aRound + bRound,
     SUBTRACT: () => aRound - bRound,
     DIVIDE: () => bRound > 0 ? aRound / bRound : 'Error',
   }
-  return obj[type](a, b)
+  return operaciones[type]()
 };
 
 module.exports = calculateNumber;
