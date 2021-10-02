@@ -5,7 +5,7 @@ function calculateNumber(type, a, b) {
   const obj = {
     SUM: () => aRound + bRound,
     SUBTRACT: () => aRound - bRound,
-    DIVIDE: () => b > 0 ? aRound / bRound : 'Error',
+    DIVIDE: () => bRound > 0 ? aRound / bRound : 'Error',
   }
   return obj[type](a, b)
 };
