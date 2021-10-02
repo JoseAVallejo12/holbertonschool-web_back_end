@@ -1,4 +1,4 @@
 function calculateNumber(a, b) {
-  return Math.round(a + b);
+  return a + b;
 }
 module.exports = calculateNumber;
